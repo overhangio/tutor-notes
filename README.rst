@@ -29,7 +29,7 @@ Configuration
 - ``NOTES_MYSQL_PASSWORD`` (default: ``"{{ 8|random_string }}"``)
 - ``NOTES_SECRET_KEY`` (default: ``"{{ 24|random_string }}"``)
 - ``NOTES_OAUTH2_SECRET`` (default: ``"{{ 24|random_string }}"``)
-- ``NOTES_DOCKER_IMAGE`` (default: ``"overhangio/openedx-notes:{{ TUTOR_VERSION }}"``)
+- ``NOTES_DOCKER_IMAGE`` (default: ``"overhangio/openedx-notes:{{ NOTES_VERSION }}"``)
 - ``NOTES_HOST`` (default: ``"notes.{{ LMS_HOST }}"``)
 - ``NOTES_MYSQL_DATABASE`` (default: ``"notes"``)
 - ``NOTES_MYSQL_USERNAME`` (default: ``"notes"``)
