@@ -23,7 +23,7 @@ config = {
 
 templates = pkg_resources.resource_filename("tutornotes", "templates")
 hooks = {
-    "init": ["mysql-client", "lms", "notes"],
+    "init": ["mysql", "lms", "notes"],
     "build-image": {"notes": "{{ NOTES_DOCKER_IMAGE }}"},
     "remote-image": {"notes": "{{ NOTES_DOCKER_IMAGE }}"},
 }
