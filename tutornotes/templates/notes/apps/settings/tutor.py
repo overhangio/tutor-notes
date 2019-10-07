@@ -16,6 +16,9 @@ DATABASES = {
         "NAME": "{{ NOTES_MYSQL_DATABASE }}",
         "USER": "{{ NOTES_MYSQL_USERNAME }}",
         "PASSWORD": "{{ NOTES_MYSQL_PASSWORD }}",
+        "OPTIONS": {
+            "init_command": "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
     }
 }
 
