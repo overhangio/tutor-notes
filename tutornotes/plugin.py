@@ -24,8 +24,8 @@ config = {
 templates = pkg_resources.resource_filename("tutornotes", "templates")
 hooks = {
     "init": ["mysql", "lms", "notes"],
-    "build-image": {"notes": "{{ NOTES_DOCKER_IMAGE }}"},
-    "remote-image": {"notes": "{{ NOTES_DOCKER_IMAGE }}"},
+    "build-image": {"notes": "{{ DOCKER_REGISTRY }}{{ NOTES_DOCKER_IMAGE }}"},
+    "remote-image": {"notes": "{{ DOCKER_REGISTRY }}{{ NOTES_DOCKER_IMAGE }}"},
 }
 
 
