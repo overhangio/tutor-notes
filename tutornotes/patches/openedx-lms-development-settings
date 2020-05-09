@@ -1,0 +1,1 @@
+EDXNOTES_PUBLIC_API = "http://{{ NOTES_HOST }}:8120/api/v1"

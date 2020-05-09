@@ -1,0 +1,3 @@
+# Notes
+EDXNOTES_CLIENT_NAME = "notes"
+EDXNOTES_INTERNAL_API = "http://notes:8000/api/v1"

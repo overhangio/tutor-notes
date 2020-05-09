@@ -2,9 +2,7 @@ from .common import *
 
 SECRET_KEY = "{{ NOTES_SECRET_KEY }}"
 ALLOWED_HOSTS = [
-    "localhost",
     "notes",
-    "notes.localhost",
     "{{ NOTES_HOST }}",
 ]
 
@@ -33,4 +31,19 @@ HAYSTACK_CONNECTIONS = {
     }
 }
 
-LOGGING["handlers"]["local"] = LOGGING["handlers"]["console"].copy()
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "level": "INFO",
+            "class": "logging.StreamHandler",
+        },
+    },
+    "loggers": {
+        "": {
+            "handlers": ["console"],
+            "level": "INFO",
+        },
+    },
+}

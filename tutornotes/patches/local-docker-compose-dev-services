@@ -1,0 +1,4 @@
+notes:
+  command: ./manage.py runserver 0.0.0.0:8120
+  ports:
+    - "8120:8120"
