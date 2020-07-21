@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: notes
-          image: {{ DOCKER_REGISTRY }}{{ NOTES_DOCKER_IMAGE }}
+          image: {{ NOTES_DOCKER_IMAGE }}
           ports:
             - containerPort: 8000
           env:

@@ -1,6 +1,6 @@
 ############# Notes: backend store for edX Student Notes
 notes:
-  image: {{ DOCKER_REGISTRY }}{{ NOTES_DOCKER_IMAGE }}
+  image: {{ NOTES_DOCKER_IMAGE }}
   environment:
     DJANGO_SETTINGS_MODULE: notesserver.settings.tutor
   volumes:

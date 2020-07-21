@@ -14,7 +14,7 @@ config = {
     },
     "defaults": {
         "VERSION": __version__,
-        "DOCKER_IMAGE": "overhangio/openedx-notes:{{ NOTES_VERSION }}",
+        "DOCKER_IMAGE": "{{ DOCKER_REGISTRY }}overhangio/openedx-notes:{{ NOTES_VERSION }}",
         "HOST": "notes.{{ LMS_HOST }}",
         "MYSQL_DATABASE": "notes",
         "MYSQL_USERNAME": "notes",
@@ -24,8 +24,8 @@ config = {
 templates = pkg_resources.resource_filename("tutornotes", "templates")
 hooks = {
     "init": ["mysql", "lms", "notes"],
-    "build-image": {"notes": "{{ DOCKER_REGISTRY }}{{ NOTES_DOCKER_IMAGE }}"},
-    "remote-image": {"notes": "{{ DOCKER_REGISTRY }}{{ NOTES_DOCKER_IMAGE }}"},
+    "build-image": {"notes": "{{ NOTES_DOCKER_IMAGE }}"},
+    "remote-image": {"notes": "{{ NOTES_DOCKER_IMAGE }}"},
 }
 
 

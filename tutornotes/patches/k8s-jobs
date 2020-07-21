@@ -11,7 +11,7 @@ spec:
       restartPolicy: Never
       containers:
         - name: notes
-          image: {{ DOCKER_REGISTRY }}{{ NOTES_DOCKER_IMAGE }}
+          image: {{ NOTES_DOCKER_IMAGE }}
           env:
             - name: DJANGO_SETTINGS_MODULE
               value: notesserver.settings.tutor
