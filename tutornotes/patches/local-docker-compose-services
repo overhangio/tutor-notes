@@ -7,5 +7,4 @@ notes:
     - ../plugins/notes/apps/settings/tutor.py:/openedx/edx-notes-api/notesserver/settings/tutor.py:ro
     - ../../data/notes:/openedx/data
   restart: unless-stopped
-  depends_on:
-    - mysql
+  depends_on: {{ [("mysql", ACTIVATE_MYSQL)]|list_if }}
