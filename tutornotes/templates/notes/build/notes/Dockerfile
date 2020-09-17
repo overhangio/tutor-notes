@@ -10,7 +10,7 @@ RUN ln -s /usr/bin/python3 /usr/bin/python \
 
 
 RUN mkdir /openedx
-RUN git clone https://github.com/edx/edx-notes-api --branch open-release/juniper.3 --depth 1 /openedx/edx-notes-api
+RUN git clone https://github.com/edx/edx-notes-api --branch {{ OPENEDX_COMMON_VERSION }} --depth 1 /openedx/edx-notes-api
 WORKDIR /openedx/edx-notes-api
 
 RUN pip3 install -r requirements/base.txt
