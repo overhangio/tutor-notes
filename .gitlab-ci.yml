@@ -2,7 +2,7 @@ variables:
     TUTOR_PLUGIN: notes
     TUTOR_IMAGES: notes
     TUTOR_PYPI_PACKAGE: tutor-notes
-    OPENEDX_RELEASE: juniper
+    OPENEDX_RELEASE: koa
 
 include:
   - project: 'community/tutor-ci'

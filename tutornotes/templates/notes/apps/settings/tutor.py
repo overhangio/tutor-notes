@@ -23,13 +23,8 @@ DATABASES = {
 CLIENT_ID = "notes"
 CLIENT_SECRET = "{{ NOTES_OAUTH2_SECRET }}"
 
-HAYSTACK_CONNECTIONS = {
-    "default": {
-        "ENGINE": "notesserver.highlight.ElasticsearchSearchEngine",
-        "URL": "http://{{ ELASTICSEARCH_HOST }}:{{ ELASTICSEARCH_PORT }}/",
-        "INDEX_NAME": "notes",
-    }
-}
+ELASTICSEARCH_DSL["default"]["hosts"] = "{{ ELASTICSEARCH_HOST }}:{{ ELASTICSEARCH_PORT }}"
+ELASTICSEARCH_INDEX_NAMES = {"notesapi.v1.search_indexes.documents.note": "notes"}
 
 LOGGING = {
     "version": 1,
