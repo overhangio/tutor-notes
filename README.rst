@@ -1,9 +1,9 @@
 Students notes plugin for `Tutor <https://docs.tutor.overhang.io>`_
 ===================================================================
 
-This is a plugin for `Tutor <https://docs.tutor.overhang.io>`_ to easily add the `Open edX note-taking app <https://github.com/edx/edx-notes-api>`_ to an Open edX platform. This app allows students to annotate portions of the courseware (see `the official documentation <https://edx.readthedocs.io/projects/open-edx-building-and-running-a-course/en/open-release-koa.master/exercises_tools/notes.html>`_).
+This is a plugin for `Tutor <https://docs.tutor.overhang.io>`_ to easily add the `Open edX note-taking app <https://github.com/edx/edx-notes-api>`_ to an Open edX platform. This app allows students to annotate portions of the courseware (see `the official documentation <https://edx.readthedocs.io/projects/open-edx-building-and-running-a-course/en/open-release-lilac.master/exercises_tools/notes.html>`_).
 
-.. image:: https://edx.readthedocs.io/projects/open-edx-building-and-running-a-course/en/open-release-koa.master/_images/SFD_SN_bodyexample.png
+.. image:: https://edx.readthedocs.io/projects/open-edx-building-and-running-a-course/en/open-release-lilac.master/_images/SFD_SN_bodyexample.png
     :alt: Notes in action
 
 Installation

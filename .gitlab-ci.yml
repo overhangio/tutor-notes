@@ -2,7 +2,7 @@ variables:
     TUTOR_PLUGIN: notes
     TUTOR_IMAGES: notes
     TUTOR_PYPI_PACKAGE: tutor-notes
-    OPENEDX_RELEASE: koa
+    OPENEDX_RELEASE: lilac
 
 include:
   - project: 'community/tutor-ci'

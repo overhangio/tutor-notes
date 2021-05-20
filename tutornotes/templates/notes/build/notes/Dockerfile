@@ -5,9 +5,8 @@ RUN apt update && \
   apt upgrade -y && \
   # python 3.8
   apt install -y language-pack-en git python3 python3-pip libmysqlclient-dev
-RUN ln -s /usr/bin/python3 /usr/bin/python \
-    && ln -s /usr/bin/pip3 /usr/bin/pip
 
+RUN ln -s /usr/bin/python3 /usr/bin/python
 
 RUN mkdir /openedx
 RUN git clone https://github.com/edx/edx-notes-api --branch {{ OPENEDX_COMMON_VERSION }} --depth 1 /openedx/edx-notes-api
