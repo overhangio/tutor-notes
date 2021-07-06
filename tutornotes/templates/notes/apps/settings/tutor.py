@@ -41,3 +41,5 @@ LOGGING = {
         },
     },
 }
+
+{{ patch("notes-settings") }}
