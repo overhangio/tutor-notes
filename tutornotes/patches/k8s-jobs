@@ -16,7 +16,7 @@ spec:
             - name: DJANGO_SETTINGS_MODULE
               value: notesserver.settings.tutor
           volumeMounts:
-            - mountPath: /openedx/edx-notes-api/notesserver/settings/tutor.py
+            - mountPath: /app/edx-notes-api/notesserver/settings/tutor.py
               name: settings
               subPath: tutor.py
       volumes:

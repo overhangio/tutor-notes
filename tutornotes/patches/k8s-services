@@ -3,8 +3,10 @@ apiVersion: v1
 kind: Service
 metadata:
   name: notes
+  labels:
+    app.kubernetes.io/name: caddy
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
     - port: 8000
       protocol: TCP

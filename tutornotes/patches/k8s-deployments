@@ -14,6 +14,9 @@ spec:
       labels:
         app.kubernetes.io/name: notes
     spec:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
       containers:
         - name: notes
           image: {{ NOTES_DOCKER_IMAGE }}
@@ -23,9 +26,11 @@ spec:
             - name: DJANGO_SETTINGS_MODULE
               value: notesserver.settings.tutor
           volumeMounts:
-            - mountPath: /openedx/edx-notes-api/notesserver/settings/tutor.py
+            - mountPath: /app/edx-notes-api/notesserver/settings/tutor.py
               name: settings
               subPath: tutor.py
+          securityContext:
+            allowPrivilegeEscalation: false
       volumes:
         - name: settings
           configMap:
