@@ -16,7 +16,10 @@ WORKDIR /app/edx-notes-api
 
 RUN python -m venv /app/venv
 ENV PATH /app/venv/bin:${PATH}
-RUN pip install setuptools==44.1.0 pip==20.3.4 wheel==0.37.0
+# https://pypi.org/project/setuptools/
+# https://pypi.org/project/pip/
+# https://pypi.org/project/wheel/
+RUN pip install setuptools==62.1.0 pip==22.0.4 wheel==0.37.1
 RUN pip3 install -r requirements/base.txt
 
 EXPOSE 8000

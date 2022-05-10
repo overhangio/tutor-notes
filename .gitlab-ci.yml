@@ -2,7 +2,7 @@ variables:
     TUTOR_PLUGIN: notes
     TUTOR_IMAGES: notes
     TUTOR_PYPI_PACKAGE: tutor-notes
-    OPENEDX_RELEASE: maple
+    OPENEDX_RELEASE: nutmeg
     GITHUB_REPO: overhangio/tutor-notes
 
 include:
