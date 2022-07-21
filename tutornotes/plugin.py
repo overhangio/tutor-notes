@@ -56,7 +56,7 @@ tutor_hooks.Filters.IMAGES_PUSH.add_item((
 @tutor_hooks.Filters.COMPOSE_MOUNTS.add()
 def _mount_edx_notes_api(volumes, name):
     """
-    When mounting cs_comments_service with `--mount=/path/to/edx-notes-api`,
+    When mounting edx-notes-api with `--mount=/path/to/edx-notes-api`,
     bind-mount the host repo in the notes container.
     """
     if name == "edx-notes-api":
