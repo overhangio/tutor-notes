@@ -35,3 +35,12 @@ Configuration
 - ``NOTES_MYSQL_USERNAME`` (default: ``"notes"``)
 
 These values can be modified with ``tutor config save --set PARAM_NAME=VALUE`` commands.
+
+Debugging
+---------
+
+To debug the notes API service, you are encouraged to mount the edx-notes-api repo from the host in the development container:
+
+    tutor dev start --mount /path/to/edx-notes-api
+
+Feel free to add breakpoints (``breakpoint()``) anywhere in your source code to debug your application.
