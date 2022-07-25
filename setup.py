@@ -19,8 +19,8 @@ setup(
     url="https://docs.tutor.overhang.io/",
     project_urls={
         "Documentation": "https://docs.tutor.overhang.io/",
-        "Code": "https://github.com/overhangio/tutor/tree/master/plugins/notes",
-        "Issue tracker": "https://github.com/overhangio/tutor/issues",
+        "Code": "https://github.com/overhangio/tutor-notes",
+        "Issue tracker": "https://github.com/overhangio/tutor-notes/issues",
         "Community": "https://discuss.overhang.io",
     },
     license="AGPLv3",
