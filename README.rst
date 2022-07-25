@@ -43,4 +43,4 @@ To debug the notes API service, you are encouraged to mount the edx-notes-api re
 
     tutor dev start --mount /path/to/edx-notes-api
 
-Feel free to add breakpoints (``import pdb; pdb.set_trace()``) anywhere in your source code to debug your application.
+Feel free to add breakpoints (``breakpoint()``) anywhere in your source code to debug your application.
