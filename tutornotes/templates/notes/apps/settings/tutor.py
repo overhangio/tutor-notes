@@ -23,7 +23,11 @@ DATABASES = {
 CLIENT_ID = "notes"
 CLIENT_SECRET = "{{ NOTES_OAUTH2_SECRET }}"
 
-ELASTICSEARCH_DSL = {'default': {'hosts': '{{ ELASTICSEARCH_HOST }}:{{ ELASTICSEARCH_PORT }}'}}
+ELASTICSEARCH_DSL = {
+    'default': {
+        'hosts': '{{ ELASTICSEARCH_SCHEME }}://{{ ELASTICSEARCH_HOST }}:{{ ELASTICSEARCH_PORT }}'
+    }
+}
 
 LOGGING = {
     "version": 1,
