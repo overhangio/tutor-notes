@@ -1,5 +1,4 @@
 FROM docker.io/ubuntu:20.04
-MAINTAINER Overhang.io <contact@overhang.io>
 
 RUN apt update && \
   apt upgrade -y && \
@@ -19,8 +18,8 @@ ENV PATH /app/venv/bin:${PATH}
 # https://pypi.org/project/setuptools/
 # https://pypi.org/project/pip/
 # https://pypi.org/project/wheel/
-RUN pip install setuptools==62.1.0 pip==22.0.4 wheel==0.37.1
-RUN pip3 install -r requirements/base.txt
+RUN pip install setuptools==65.5.1 pip==22.3.1 wheel==0.38.4
+RUN pip install -r requirements/base.txt
 
 EXPOSE 8000
 CMD gunicorn --workers=2 --name notes --bind=0.0.0.0:8000 --max-requests=1000 notesserver.wsgi:application
