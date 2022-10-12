@@ -44,3 +44,8 @@ To debug the notes API service, you are encouraged to mount the edx-notes-api re
     tutor dev start --mount /path/to/edx-notes-api
 
 Feel free to add breakpoints (``breakpoint()``) anywhere in your source code to debug your application.
+
+Troubleshooting
+---------------
+
+This Tutor plugin is maintained by Jhony Avella from `eduNEXT <https://www.edunext.co/>`__. Community support is available from the official `Open edX forum <https://discuss.openedx.org>`__. Do you need help with this plugin? See the `troubleshooting <https://docs.tutor.overhang.io/troubleshooting.html>`__ section from the Tutor documentation.
