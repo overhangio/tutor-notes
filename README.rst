@@ -33,6 +33,8 @@ Configuration
 - ``NOTES_HOST`` (default: ``"notes.{{ LMS_HOST }}"``)
 - ``NOTES_MYSQL_DATABASE`` (default: ``"notes"``)
 - ``NOTES_MYSQL_USERNAME`` (default: ``"notes"``)
+- ``NOTES_CODE_REPO`` (default: ``"https://github.com/edx/edx-notes-api"``)
+- ``NOTES_CODE_VERSION`` (default: ``"{{ OPENEDX_COMMON_VERSION }}"``)
 
 These values can be modified with ``tutor config save --set PARAM_NAME=VALUE`` commands.
 
