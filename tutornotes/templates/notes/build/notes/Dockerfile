@@ -10,7 +10,7 @@ ARG APP_USER_ID=1000
 RUN useradd --home-dir /app --create-home --shell /bin/bash --uid ${APP_USER_ID} app
 USER ${APP_USER_ID}
 
-RUN git clone {{ NOTES_CODE_REPO }} --branch {{ NOTES_CODE_VERSION }} --depth 1 /app/edx-notes-api
+RUN git clone {{ NOTES_REPOSITORY }} --branch {{ NOTES_REPOSITORY_VERSION }} --depth 1 /app/edx-notes-api
 WORKDIR /app/edx-notes-api
 
 RUN python -m venv /app/venv

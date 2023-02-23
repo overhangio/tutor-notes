@@ -20,8 +20,8 @@ config = {
         "HOST": "notes.{{ LMS_HOST }}",
         "MYSQL_DATABASE": "notes",
         "MYSQL_USERNAME": "notes",
-        "CODE_REPO": "https://github.com/edx/edx-notes-api",
-        "CODE_VERSION": "{{ OPENEDX_COMMON_VERSION }}",
+        "REPOSITORY": "https://github.com/openedx/edx-notes-api",
+        "REPOSITORY_VERSION": "{{ OPENEDX_COMMON_VERSION }}",
     },
 }
 
