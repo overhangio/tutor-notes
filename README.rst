@@ -1,7 +1,7 @@
 Students notes plugin for `Tutor <https://docs.tutor.overhang.io>`_
 ===================================================================
 
-This is a plugin for `Tutor <https://docs.tutor.overhang.io>`_ to easily add the `Open edX note-taking app <https://github.com/edx/edx-notes-api>`_ to an Open edX platform. This app allows students to annotate portions of the courseware (see `the official documentation <https://edx.readthedocs.io/projects/open-edx-building-and-running-a-course/en/open-release-olive.master/exercises_tools/notes.html>`_).
+This is a plugin for `Tutor <https://docs.tutor.overhang.io>`_ to easily add the `Open edX note-taking app <https://github.com/openedx/edx-notes-api>`_ to an Open edX platform. This app allows students to annotate portions of the courseware (see `the official documentation <https://edx.readthedocs.io/projects/open-edx-building-and-running-a-course/en/open-release-olive.master/exercises_tools/notes.html>`_).
 
 .. image:: https://edx.readthedocs.io/projects/open-edx-building-and-running-a-course/en/open-release-olive.master/_images/SFD_SN_bodyexample.png
     :alt: Notes in action
@@ -33,6 +33,8 @@ Configuration
 - ``NOTES_HOST`` (default: ``"notes.{{ LMS_HOST }}"``)
 - ``NOTES_MYSQL_DATABASE`` (default: ``"notes"``)
 - ``NOTES_MYSQL_USERNAME`` (default: ``"notes"``)
+- ``NOTES_REPOSITORY`` (default: ``"https://github.com/openedx/edx-notes-api"``)
+- ``NOTES_REPOSITORY_VERSION`` (default: ``"{{ OPENEDX_COMMON_VERSION }}"``)
 
 These values can be modified with ``tutor config save --set PARAM_NAME=VALUE`` commands.
 
