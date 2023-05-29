@@ -18,7 +18,7 @@ ENV PATH /app/venv/bin:${PATH}
 # https://pypi.org/project/setuptools/
 # https://pypi.org/project/pip/
 # https://pypi.org/project/wheel/
-RUN pip install setuptools==65.5.1 pip==22.3.1 wheel==0.38.4
+RUN pip install setuptools==67.8.0 pip==23.1.2 wheel==0.40.0
 RUN pip install -r requirements/base.txt
 
 EXPOSE 8000
