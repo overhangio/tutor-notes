@@ -10,7 +10,6 @@ from tutor import hooks as tutor_hooks
 
 from .__about__ import __version__
 
-
 config = {
     "unique": {
         "MYSQL_PASSWORD": "{{ 8|random_string }}",
@@ -101,7 +100,9 @@ for path in glob(
     )
 ):
     with open(path, encoding="utf-8") as patch_file:
-        tutor_hooks.Filters.ENV_PATCHES.add_item((os.path.basename(path), patch_file.read()))
+        tutor_hooks.Filters.ENV_PATCHES.add_item(
+            (os.path.basename(path), patch_file.read())
+        )
 # Add configuration entries
 tutor_hooks.Filters.CONFIG_DEFAULTS.add_items(
     [
@@ -115,7 +116,9 @@ tutor_hooks.Filters.CONFIG_UNIQUE.add_items(
         for key, value in config.get("unique", {}).items()
     ]
 )
-tutor_hooks.Filters.CONFIG_OVERRIDES.add_items(list(config.get("overrides", {}).items()))
+tutor_hooks.Filters.CONFIG_OVERRIDES.add_items(
+    list(config.get("overrides", {}).items())
+)
 
 # Notes public hosts
 @tutor_hooks.Filters.APP_PUBLIC_HOSTS.add()
