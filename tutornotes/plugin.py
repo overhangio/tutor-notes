@@ -124,7 +124,7 @@ tutor_hooks.Filters.CONFIG_OVERRIDES.add_items(
 @tutor_hooks.Filters.APP_PUBLIC_HOSTS.add()
 def _notes_public_hosts(hosts: list[str], context_name: t.Literal["local", "dev"]) -> list[str]:
     if context_name == "dev":
-        hosts += ["notes.{{ LMS_HOST }}:8120"]
+        hosts += ["{{ NOTES_HOST }}:8120"]
     else:
-        hosts += ["notes.{{ LMS_HOST }}"]
+        hosts += ["{{ NOTES_HOST }}"]
     return hosts
