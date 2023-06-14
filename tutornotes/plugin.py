@@ -1,12 +1,14 @@
+from __future__ import annotations
+
 from glob import glob
 import os
+import typing as t
 
 import pkg_resources
 
 from tutor import hooks as tutor_hooks
 
 from .__about__ import __version__
-
 
 config = {
     "unique": {
@@ -26,18 +28,27 @@ config = {
 }
 
 # Initialization hooks
-tutor_hooks.Filters.COMMANDS_INIT.add_item((
-    "mysql",
-    ("notes", "tasks", "mysql", "init"),
-))
-tutor_hooks.Filters.COMMANDS_INIT.add_item((
-    "lms",
-    ("notes", "tasks", "lms", "init"),
-))
-tutor_hooks.Filters.COMMANDS_INIT.add_item((
-    "notes",
-    ("notes", "tasks", "notes", "init"),
-))
+
+# To add a custom initialization task, create a bash script template under:
+# tutorcodejail/templates/codejail/tasks/
+# and then add it to the MY_INIT_TASKS list. Each task is in the format:
+# ("<service>", ("<path>", "<to>", "<script>", "<template>"))
+MY_INIT_TASKS: list[tuple[str, tuple[str, ...]]] = [
+    ("mysql", ("notes", "tasks", "mysql", "init")),
+    ("lms", ("notes", "tasks", "lms", "init")),
+    ("notes", ("notes", "tasks", "notes", "init")),
+]
+
+# For each task added to MY_INIT_TASKS, we load the task template
+# and add it to the CLI_DO_INIT_TASKS filter, which tells Tutor to
+# run it as part of the `init` job.
+for service, template_path in MY_INIT_TASKS:
+    full_path: str = pkg_resources.resource_filename(
+        "tutornotes", os.path.join("templates", *template_path)
+    )
+    with open(full_path, encoding="utf-8") as init_task_file:
+        init_task: str = init_task_file.read()
+    tutor_hooks.Filters.CLI_DO_INIT_TASKS.add_item((service, init_task))
 
 # Image management
 tutor_hooks.Filters.IMAGES_BUILD.add_item((
@@ -89,7 +100,9 @@ for path in glob(
     )
 ):
     with open(path, encoding="utf-8") as patch_file:
-        tutor_hooks.Filters.ENV_PATCHES.add_item((os.path.basename(path), patch_file.read()))
+        tutor_hooks.Filters.ENV_PATCHES.add_item(
+            (os.path.basename(path), patch_file.read())
+        )
 # Add configuration entries
 tutor_hooks.Filters.CONFIG_DEFAULTS.add_items(
     [
@@ -103,4 +116,15 @@ tutor_hooks.Filters.CONFIG_UNIQUE.add_items(
         for key, value in config.get("unique", {}).items()
     ]
 )
-tutor_hooks.Filters.CONFIG_OVERRIDES.add_items(list(config.get("overrides", {}).items()))
+tutor_hooks.Filters.CONFIG_OVERRIDES.add_items(
+    list(config.get("overrides", {}).items())
+)
+
+# Notes public hosts
+@tutor_hooks.Filters.APP_PUBLIC_HOSTS.add()
+def _notes_public_hosts(hosts: list[str], context_name: t.Literal["local", "dev"]) -> list[str]:
+    if context_name == "dev":
+        hosts += ["{{ NOTES_HOST }}:8120"]
+    else:
+        hosts += ["{{ NOTES_HOST }}"]
+    return hosts
