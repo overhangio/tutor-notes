@@ -8,12 +8,4 @@ notes:
     - ../../data/notes:/app/data
   restart: unless-stopped
   depends_on:
-    - notes-permissions
     {% if RUN_MYSQL %}- mysql{% endif %}
-
-notes-permissions:
-  image: {{ DOCKER_IMAGE_PERMISSIONS }}
-  command: ["1000", "/app/notes"]
-  restart: on-failure
-  volumes:
-    - ../../data/notes:/app/notes
