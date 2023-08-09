@@ -17,10 +17,6 @@ Then, to enable this plugin, run::
 
     tutor plugins enable notes
 
-Then, save config::
-
-    tutor config save
-
 Then, to make migrations & tasks::
 
     tutor local launch
