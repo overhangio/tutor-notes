@@ -17,6 +17,14 @@ Then, to enable this plugin, run::
 
     tutor plugins enable notes
 
+Then, save config::
+
+    tutor config save
+
+Then, to make migrations & tasks::
+
+    tutor local launch
+
 You should beware that the ``notes.<LMS_HOST>`` domain name should exist and point to your server. For instance, if your LMS is hosted at http://myopenedx.com, the notes service should be found at http://notes.myopenedx.com.
 
 If you would like to host the notes service at a different domain name, you can set the ``NOTES_HOST`` configuration variable (see below). When testing Tutor on a local computer, this will be automatically set to notes.local.overhang.io.
