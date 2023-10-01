@@ -1,5 +1,6 @@
 {% if is_buildkit_enabled() %}# syntax=docker/dockerfile:1.4{% endif %}
-FROM docker.io/ubuntu:20.04
+ARG DOCKER_REGISTRY={{ DOCKER_REGISTRY }}
+FROM ${DOCKER_REGISTRY}/ubuntu:20.04
 
 RUN {% if is_buildkit_enabled() %}--mount=type=cache,target=/var/cache/apt,sharing=locked \
   --mount=type=cache,target=/var/lib/apt,sharing=locked{% endif %} \
