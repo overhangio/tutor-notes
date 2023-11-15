@@ -1,9 +1,9 @@
-{% if is_buildkit_enabled() %}# syntax=docker/dockerfile:1.4{% endif %}
+# syntax=docker/dockerfile:1.4
 FROM docker.io/ubuntu:20.04
 
 ENV DEBIAN_FRONTEND=noninteractive
-RUN {% if is_buildkit_enabled() %}--mount=type=cache,target=/var/cache/apt,sharing=locked \
-  --mount=type=cache,target=/var/lib/apt,sharing=locked{% endif %} \
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+  --mount=type=cache,target=/var/lib/apt,sharing=locked \
   apt update && \
   apt upgrade -y && \
   apt install -y \
@@ -30,8 +30,8 @@ ENV PATH /app/venv/bin:${PATH}
 # https://pypi.org/project/setuptools/
 # https://pypi.org/project/pip/
 # https://pypi.org/project/wheel/
-RUN {% if is_buildkit_enabled() %}--mount=type=cache,target=/app/.cache/pip,sharing=shared {% endif %}pip install setuptools==67.8.0 pip==23.1.2 wheel==0.40.0
-RUN {% if is_buildkit_enabled() %}--mount=type=cache,target=/app/.cache/pip,sharing=shared {% endif %}pip install -r requirements/base.txt
+RUN --mount=type=cache,target=/app/.cache/pip,sharing=shared pip install setuptools==68.2.2 pip==23.2.1 wheel==0.41.2
+RUN --mount=type=cache,target=/app/.cache/pip,sharing=shared pip install -r requirements/base.txt
 
 EXPOSE 8000
 CMD gunicorn --workers=2 --name notes --bind=0.0.0.0:8000 --max-requests=1000 notesserver.wsgi:application
