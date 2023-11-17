@@ -1,12 +1,19 @@
 {% if is_buildkit_enabled() %}# syntax=docker/dockerfile:1.4{% endif %}
 FROM docker.io/ubuntu:20.04
 
+ENV DEBIAN_FRONTEND=noninteractive
 RUN {% if is_buildkit_enabled() %}--mount=type=cache,target=/var/cache/apt,sharing=locked \
   --mount=type=cache,target=/var/lib/apt,sharing=locked{% endif %} \
   apt update && \
   apt upgrade -y && \
-  # python 3.8
-  apt install -y language-pack-en git python3 python3-pip python3-venv libmysqlclient-dev
+  apt install -y \
+    language-pack-en \
+    git \
+    python3 \
+    python3-pip \
+    python3-venv \
+    libmysqlclient-dev \
+    pkg-config
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
 ###### Git-clone Notes repo ######
