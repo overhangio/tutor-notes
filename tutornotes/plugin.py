@@ -67,7 +67,9 @@ tutor_hooks.Filters.IMAGES_PUSH.add_item((
 ))
 
 @tutor_hooks.Filters.COMPOSE_MOUNTS.add()
-def _mount_edx_notes_api(volumes, name):
+def _mount_edx_notes_api(
+    volumes: list[tuple[str, str]], name: str
+) -> list[tuple[str, str]]:
     """
     When mounting edx-notes-api with `--mount=/path/to/edx-notes-api`,
     bind-mount the host repo in the notes container.
@@ -122,7 +124,9 @@ tutor_hooks.Filters.CONFIG_OVERRIDES.add_items(
 
 # Notes public hosts
 @tutor_hooks.Filters.APP_PUBLIC_HOSTS.add()
-def _notes_public_hosts(hosts: list[str], context_name: t.Literal["local", "dev"]) -> list[str]:
+def _notes_public_hosts(
+    hosts: list[str], context_name: t.Literal["local", "dev"]
+) -> list[str]:
     if context_name == "dev":
         hosts += ["{{ NOTES_HOST }}:8120"]
     else:
