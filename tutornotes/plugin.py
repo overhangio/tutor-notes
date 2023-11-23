@@ -1,11 +1,10 @@
 from __future__ import annotations
 
-from glob import glob
 import os
 import typing as t
+from glob import glob
 
 import pkg_resources
-
 from tutor import hooks as tutor_hooks
 from tutor.__about__ import __version_suffix__
 
@@ -16,11 +15,6 @@ if __version_suffix__:
     __version__ += "-" + __version_suffix__
 
 config = {
-    "unique": {
-        "MYSQL_PASSWORD": "{{ 8|random_string }}",
-        "SECRET_KEY": "{{ 24|random_string }}",
-        "OAUTH2_SECRET": "{{ 24|random_string }}",
-    },
     "defaults": {
         "VERSION": __version__,
         "DOCKER_IMAGE": "{{ DOCKER_REGISTRY }}overhangio/openedx-notes:{{ NOTES_VERSION }}",
@@ -30,14 +24,14 @@ config = {
         "REPOSITORY": "https://github.com/openedx/edx-notes-api",
         "REPOSITORY_VERSION": "{{ OPENEDX_COMMON_VERSION }}",
     },
+    "unique": {
+        "MYSQL_PASSWORD": "{{ 8|random_string }}",
+        "SECRET_KEY": "{{ 24|random_string }}",
+        "OAUTH2_SECRET": "{{ 24|random_string }}",
+    },
 }
 
 # Initialization hooks
-
-# To add a custom initialization task, create a bash script template under:
-# tutorcodejail/templates/codejail/tasks/
-# and then add it to the MY_INIT_TASKS list. Each task is in the format:
-# ("<service>", ("<path>", "<to>", "<script>", "<template>"))
 MY_INIT_TASKS: list[tuple[str, tuple[str, ...]]] = [
     ("mysql", ("notes", "tasks", "mysql", "init")),
     ("lms", ("notes", "tasks", "lms", "init")),
@@ -56,23 +50,32 @@ for service, template_path in MY_INIT_TASKS:
     tutor_hooks.Filters.CLI_DO_INIT_TASKS.add_item((service, init_task))
 
 # Image management
-tutor_hooks.Filters.IMAGES_BUILD.add_item((
-    "notes",
-    ("plugins", "notes", "build", "notes"),
-    "{{ NOTES_DOCKER_IMAGE }}",
-    (),
-))
-tutor_hooks.Filters.IMAGES_PULL.add_item((
-    "notes",
-    "{{ NOTES_DOCKER_IMAGE }}",
-))
-tutor_hooks.Filters.IMAGES_PUSH.add_item((
-    "notes",
-    "{{ NOTES_DOCKER_IMAGE }}",
-))
+tutor_hooks.Filters.IMAGES_BUILD.add_item(
+    (
+        "notes",
+        ("plugins", "notes", "build", "notes"),
+        "{{ NOTES_DOCKER_IMAGE }}",
+        (),
+    )
+)
+tutor_hooks.Filters.IMAGES_PULL.add_item(
+    (
+        "notes",
+        "{{ NOTES_DOCKER_IMAGE }}",
+    )
+)
+tutor_hooks.Filters.IMAGES_PUSH.add_item(
+    (
+        "notes",
+        "{{ NOTES_DOCKER_IMAGE }}",
+    )
+)
+
 
 @tutor_hooks.Filters.COMPOSE_MOUNTS.add()
-def _mount_edx_notes_api(volumes, name):
+def _mount_edx_notes_api(
+    volumes: list[tuple[str, str]], name: str
+) -> list[tuple[str, str]]:
     """
     When mounting edx-notes-api with `--mount=/path/to/edx-notes-api`,
     bind-mount the host repo in the notes container.
@@ -85,7 +88,7 @@ def _mount_edx_notes_api(volumes, name):
         ]
     return volumes
 
-####### Boilerplate code
+
 # Add the "templates" folder as a template root
 tutor_hooks.Filters.ENV_TEMPLATE_ROOTS.add_item(
     pkg_resources.resource_filename("tutornotes", "templates")
@@ -108,26 +111,24 @@ for path in glob(
         tutor_hooks.Filters.ENV_PATCHES.add_item(
             (os.path.basename(path), patch_file.read())
         )
+
 # Add configuration entries
 tutor_hooks.Filters.CONFIG_DEFAULTS.add_items(
-    [
-        (f"NOTES_{key}", value)
-        for key, value in config.get("defaults", {}).items()
-    ]
+    [(f"NOTES_{key}", value) for key, value in config.get("defaults", {}).items()]
 )
 tutor_hooks.Filters.CONFIG_UNIQUE.add_items(
-    [
-        (f"NOTES_{key}", value)
-        for key, value in config.get("unique", {}).items()
-    ]
+    [(f"NOTES_{key}", value) for key, value in config.get("unique", {}).items()]
 )
 tutor_hooks.Filters.CONFIG_OVERRIDES.add_items(
     list(config.get("overrides", {}).items())
 )
 
+
 # Notes public hosts
 @tutor_hooks.Filters.APP_PUBLIC_HOSTS.add()
-def _notes_public_hosts(hosts: list[str], context_name: t.Literal["local", "dev"]) -> list[str]:
+def _notes_public_hosts(
+    hosts: list[str], context_name: t.Literal["local", "dev"]
+) -> list[str]:
     if context_name == "dev":
         hosts += ["{{ NOTES_HOST }}:8120"]
     else:
