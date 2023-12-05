@@ -1,7 +1,7 @@
-Students notes plugin for `Tutor <https://docs.tutor.overhang.io>`_
+Students notes plugin for `Tutor <https://docs.tutor.edly.io>`_
 ===================================================================
 
-This is a plugin for `Tutor <https://docs.tutor.overhang.io>`_ to easily add the `Open edX note-taking app <https://github.com/openedx/edx-notes-api>`_ to an Open edX platform. This app allows students to annotate portions of the courseware (see `the official documentation <https://edx.readthedocs.io/projects/open-edx-building-and-running-a-course/en/open-release-palm.master/exercises_tools/notes.html>`_).
+This is a plugin for `Tutor <https://docs.tutor.edly.io>`_ to easily add the `Open edX note-taking app <https://github.com/openedx/edx-notes-api>`_ to an Open edX platform. This app allows students to annotate portions of the courseware (see `the official documentation <https://edx.readthedocs.io/projects/open-edx-building-and-running-a-course/en/open-release-palm.master/exercises_tools/notes.html>`_).
 
 .. image:: https://edx.readthedocs.io/projects/open-edx-building-and-running-a-course/en/open-release-palm.master/_images/SFD_SN_bodyexample.png
     :alt: Notes in action
@@ -54,7 +54,7 @@ Feel free to add breakpoints (``breakpoint()``) anywhere in your source code to 
 Troubleshooting
 ---------------
 
-This Tutor plugin is maintained by Jhony Avella from `eduNEXT <https://www.edunext.co/>`__. Community support is available from the official `Open edX forum <https://discuss.openedx.org>`__. Do you need help with this plugin? See the `troubleshooting <https://docs.tutor.overhang.io/troubleshooting.html>`__ section from the Tutor documentation.
+This Tutor plugin is maintained by Jhony Avella from `eduNEXT <https://www.edunext.co/>`__. Community support is available from the official `Open edX forum <https://discuss.openedx.org>`__. Do you need help with this plugin? See the `troubleshooting <https://docs.tutor.edly.io/troubleshooting.html>`__ section from the Tutor documentation.
 
 License
 -------
