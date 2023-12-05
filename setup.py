@@ -16,9 +16,9 @@ with io.open(
 setup(
     name="tutor-notes",
     version=about["__version__"],
-    url="https://docs.tutor.overhang.io/",
+    url="https://docs.tutor.edly.io/",
     project_urls={
-        "Documentation": "https://docs.tutor.overhang.io/",
+        "Documentation": "https://docs.tutor.edly.io/",
         "Code": "https://github.com/overhangio/tutor-notes",
         "Issue tracker": "https://github.com/overhangio/tutor-notes/issues",
         "Community": "https://discuss.openedx.org",
