@@ -4,7 +4,7 @@ import os
 import typing as t
 from glob import glob
 
-import pkg_resources
+import importlib_resources
 from tutor import hooks as tutor_hooks
 from tutor.__about__ import __version_suffix__
 
@@ -31,19 +31,17 @@ config = {
     },
 }
 
-# Initialization hooks
-MY_INIT_TASKS: list[tuple[str, tuple[str, ...]]] = [
-    ("mysql", ("notes", "tasks", "mysql", "init")),
-    ("lms", ("notes", "tasks", "lms", "init")),
-    ("notes", ("notes", "tasks", "notes", "init")),
-]
-
-# For each task added to MY_INIT_TASKS, we load the task template
+# For each service, we load the task template
 # and add it to the CLI_DO_INIT_TASKS filter, which tells Tutor to
 # run it as part of the `init` job.
-for service, template_path in MY_INIT_TASKS:
-    full_path: str = pkg_resources.resource_filename(
-        "tutornotes", os.path.join("templates", *template_path)
+for service in ["mysql", "lms", "notes"]:
+    full_path: str = str(
+        importlib_resources.files("tutornotes")
+        / "templates"
+        / "notes"
+        / "tasks"
+        / service
+        / "init"
     )
     with open(full_path, encoding="utf-8") as init_task_file:
         init_task: str = init_task_file.read()
@@ -91,7 +89,7 @@ def _mount_edx_notes_api(
 
 # Add the "templates" folder as a template root
 tutor_hooks.Filters.ENV_TEMPLATE_ROOTS.add_item(
-    pkg_resources.resource_filename("tutornotes", "templates")
+    str(importlib_resources.files("tutornotes") / "templates")
 )
 # Render the "build" and "apps" folders
 tutor_hooks.Filters.ENV_TEMPLATE_TARGETS.add_items(
@@ -101,12 +99,7 @@ tutor_hooks.Filters.ENV_TEMPLATE_TARGETS.add_items(
     ],
 )
 # Load patches from files
-for path in glob(
-    os.path.join(
-        pkg_resources.resource_filename("tutornotes", "patches"),
-        "*",
-    )
-):
+for path in glob(str(importlib_resources.files("tutornotes") / "patches" / "*")):
     with open(path, encoding="utf-8") as patch_file:
         tutor_hooks.Filters.ENV_PATCHES.add_item(
             (os.path.basename(path), patch_file.read())
