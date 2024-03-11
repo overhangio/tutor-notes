@@ -46,4 +46,7 @@ LOGGING = {
     },
 }
 
+{%- if ENABLE_HTTPS %}
+REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = ("rest_framework.renderers.JSONRenderer",)
+{%- endif %}
 {{ patch("notes-settings") }}
