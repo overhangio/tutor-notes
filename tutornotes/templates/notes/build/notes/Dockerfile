@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1.4
-FROM docker.io/ubuntu:20.04
+FROM docker.io/python:3.12-slim-bookworm
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
@@ -7,14 +7,15 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
   apt update && \
   apt upgrade -y && \
   apt install -y \
-    language-pack-en \
+    locales \
     git \
-    python3 \
-    python3-pip \
-    python3-venv \
-    libmysqlclient-dev \
-    pkg-config
-RUN ln -s /usr/bin/python3 /usr/bin/python
+    python3-dev \
+    build-essential \
+    default-libmysqlclient-dev \
+    pkg-config && \
+  sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && \
+  locale-gen
+ENV LC_ALL en_US.UTF-8
 
 ###### Git-clone Notes repo ######
 ARG APP_USER_ID=1000
@@ -30,7 +31,7 @@ ENV PATH /app/venv/bin:${PATH}
 # https://pypi.org/project/setuptools/
 # https://pypi.org/project/pip/
 # https://pypi.org/project/wheel/
-RUN --mount=type=cache,target=/app/.cache/pip,sharing=shared pip install setuptools==68.2.2 pip==23.2.1 wheel==0.41.2
+RUN --mount=type=cache,target=/app/.cache/pip,sharing=shared pip install setuptools==69.2.0 pip==24.0 wheel==0.43.0
 RUN --mount=type=cache,target=/app/.cache/pip,sharing=shared pip install -r requirements/base.txt
 
 EXPOSE 8000
