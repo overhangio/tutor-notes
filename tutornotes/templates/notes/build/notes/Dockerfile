@@ -15,7 +15,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     pkg-config && \
   sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && \
   locale-gen
-ENV LC_ALL en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8
 
 ###### Git-clone Notes repo ######
 ARG APP_USER_ID=1000
@@ -27,7 +27,7 @@ WORKDIR /app/edx-notes-api
 
 ###### Install python venv ######
 RUN python -m venv /app/venv
-ENV PATH /app/venv/bin:${PATH}
+ENV PATH=/app/venv/bin:${PATH}
 # https://pypi.org/project/setuptools/
 # https://pypi.org/project/pip/
 # https://pypi.org/project/wheel/
