@@ -10,7 +10,7 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
         "HOST": "{{ MYSQL_HOST }}",
-        "PORT": {{MYSQL_PORT}},
+        "PORT": {{ MYSQL_PORT }},
         "NAME": "{{ NOTES_MYSQL_DATABASE }}",
         "USER": "{{ NOTES_MYSQL_USERNAME }}",
         "PASSWORD": "{{ NOTES_MYSQL_PASSWORD }}",
