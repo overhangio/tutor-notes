@@ -28,6 +28,12 @@ USER ${APP_USER_ID}
 RUN git clone {{ NOTES_REPOSITORY }} --branch {{ NOTES_REPOSITORY_VERSION }} --depth 1 /app/edx-notes-api
 WORKDIR /app/edx-notes-api
 
+# TODO remove after PR is merged
+# https://github.com/openedx/edx-notes-api/pull/444
+RUN git remote add regisb https://github.com/regisb/edx-notes-api \
+  && git fetch regisb regisb/meilisearch \
+  && git merge regisb/regisb/meilisearch
+
 ###### Install python venv ######
 RUN python -m venv /app/venv
 ENV PATH=/app/venv/bin:${PATH}
