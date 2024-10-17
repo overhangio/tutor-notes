@@ -1,0 +1,1 @@
+- [Bugfix] Actually mount edx-notes-api repositories from host on `tutor mounts add /path/to/edx-notes-api`. (by @regisb)
