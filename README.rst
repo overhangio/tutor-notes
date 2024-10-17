@@ -23,7 +23,7 @@ Then, to make migrations & tasks::
 
 You should beware that the ``notes.<LMS_HOST>`` domain name should exist and point to your server. For instance, if your LMS is hosted at http://myopenedx.com, the notes service should be found at http://notes.myopenedx.com.
 
-If you would like to host the notes service at a different domain name, you can set the ``NOTES_HOST`` configuration variable (see below). When testing Tutor on a local computer, this will be automatically set to notes.local.edly.io.
+If you would like to host the notes service at a different domain name, you can set the ``NOTES_HOST`` configuration variable (see below). When testing Tutor on a local computer, this will be automatically set to notes.local.openedx.io.
 
 To enable student notes for a specific course, you should go to the course advanced settings in the studio, and set "Enable Student Notes" to "true". Then, hit "save changes".
 
