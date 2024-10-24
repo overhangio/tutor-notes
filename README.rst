@@ -1,9 +1,9 @@
 Students notes plugin for `Tutor <https://docs.tutor.edly.io>`_
 ===================================================================
 
-This is a plugin for `Tutor <https://docs.tutor.edly.io>`_ to easily add the `Open edX note-taking app <https://github.com/openedx/edx-notes-api>`_ to an Open edX platform. This app allows students to annotate portions of the courseware (see `the official documentation <https://edx.readthedocs.io/projects/open-edx-building-and-running-a-course/en/open-release-redwood.master/exercises_tools/notes.html>`_).
+This is a plugin for `Tutor <https://docs.tutor.edly.io>`_ to easily add the `Open edX note-taking app <https://github.com/openedx/edx-notes-api>`_ to an Open edX platform. This app allows students to annotate portions of the courseware (see `the official documentation <https://docs.openedx.org/en/latest/educators/how-tos/course_development/exercise_tools/enable_notes.html>`_).
 
-.. image:: https://edx.readthedocs.io/projects/open-edx-building-and-running-a-course/en/open-release-redwood.master/_images/SFD_SN_bodyexample.png
+.. image:: https://docs.openedx.org/en/latest/_images/SFD_SN_bodyexample.png
     :alt: Notes in action
 
 Installation
