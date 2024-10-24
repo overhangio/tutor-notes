@@ -6,5 +6,8 @@ notes:
   volumes:
     - ../plugins/notes/apps/settings/tutor.py:/app/edx-notes-api/notesserver/settings/tutor.py:ro
     - ../../data/notes:/app/data
+    {%- for mount in iter_mounts(MOUNTS, "notes") %}
+    - {{ mount }}
+    {%- endfor %}
   restart: unless-stopped
   depends_on: {{ [("mysql", RUN_MYSQL)]|list_if }}
