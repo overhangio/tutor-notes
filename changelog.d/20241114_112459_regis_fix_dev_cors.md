@@ -1,0 +1,1 @@
+- [Bugfix] Fix broken feature in `dev` mode, where the frontend is reporting a CORS error on loading the notes. (by @regisb)
