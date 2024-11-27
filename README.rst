@@ -59,4 +59,4 @@ This Tutor plugin is maintained by Jhony Avella from `eduNEXT <https://www.edune
 License
 -------
 
-This software is licensed under the terms of the `GNU Affero General Public License (AGPL) <https://github.com/overhangio/tutor-notes/blob/master/LICENSE.txt>`_.
+This software is licensed under the terms of the `GNU Affero General Public License (AGPL) <https://github.com/overhangio/tutor-notes/blob/release/LICENSE.txt>`_.
