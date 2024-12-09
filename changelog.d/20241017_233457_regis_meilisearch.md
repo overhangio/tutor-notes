@@ -1,2 +1,0 @@
-- [Bugfix] Actually mount edx-notes-api repositories from host on `tutor mounts add /path/to/edx-notes-api`. (by @regisb)
-- 💥[Feature] Replace Elasticsearch by Meilisearch. The implementation is much more compact and readable. All content will be automatically re-indexed during init. (by @regisb)
