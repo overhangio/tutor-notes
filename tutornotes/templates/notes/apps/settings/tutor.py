@@ -10,7 +10,7 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
         "HOST": "{{ MYSQL_HOST }}",
-        "PORT": {{MYSQL_PORT}},
+        "PORT": {{ MYSQL_PORT }},
         "NAME": "{{ NOTES_MYSQL_DATABASE }}",
         "USER": "{{ NOTES_MYSQL_USERNAME }}",
         "PASSWORD": "{{ NOTES_MYSQL_PASSWORD }}",
@@ -23,11 +23,12 @@ DATABASES = {
 CLIENT_ID = "notes"
 CLIENT_SECRET = "{{ NOTES_OAUTH2_SECRET }}"
 
-ELASTICSEARCH_DSL = {
-    'default': {
-        'hosts': '{{ ELASTICSEARCH_SCHEME }}://{{ ELASTICSEARCH_HOST }}:{{ ELASTICSEARCH_PORT }}'
-    }
-}
+# Meilisearch credentials
+ES_DISABLED = True
+MEILISEARCH_ENABLED = True
+MEILISEARCH_URL = "{{ MEILISEARCH_URL }}"
+MEILISEARCH_API_KEY = "{{ MEILISEARCH_API_KEY }}"
+MEILISEARCH_INDEX = "{{ MEILISEARCH_INDEX_PREFIX }}student_notes"
 
 LOGGING = {
     "version": 1,
