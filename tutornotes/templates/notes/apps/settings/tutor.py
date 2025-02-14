@@ -4,6 +4,7 @@ SECRET_KEY = "{{ NOTES_SECRET_KEY }}"
 ALLOWED_HOSTS = [
     "notes",
     "{{ NOTES_HOST }}",
+    "{{ NOTES_HOST }}:8120",
 ]
 
 DATABASES = {
