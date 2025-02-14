@@ -9,7 +9,8 @@ authors = [
   { email = "hello@edly.io"},
 ]
 maintainers = [
-  { name = "eduNEXT", email = "contact@edunext.co" },
+  { name = "eduNEXT" },
+  { email = "contact@edunext.co" },
 ]
 license = {file = "LICENSE.txt"}
 readme = {file = "README.rst", content-type = "text/x-rst"}
@@ -35,9 +36,12 @@ dynamic = ["version"]
 
 # https://packaging.python.org/en/latest/specifications/well-known-project-urls/#well-known-labels
 [project.urls]
+Homepage = "https://docs.tutor.edly.io/"
 Documentation = "https://github.com/overhangio/tutor-notes#readme"
 Issues = "https://github.com/overhangio/tutor-notes/issues"
 Source = "https://github.com/overhangio/tutor-notes"
+Changelog = "https://github.com/overhangio/tutor-notes/blob/release/CHANGELOG.md"
+Community = "https://discuss.openedx.org/tag/tutor"
 
 [build-system]
 requires = ["hatchling"]
@@ -54,7 +58,6 @@ packages = ["tutornotes"]
 # Disable strict naming, otherwise twine is not able to detect name/version
 strict-naming = false
 include = [ "/tutornotes"]
-exclude = ["tests*"]
 
 [project.entry-points."tutor.plugin.v1"]
 notes = "tutornotes.plugin"
