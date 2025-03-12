@@ -19,6 +19,18 @@ instructions, because git commits are used to generate release notes:
 
 <!-- scriv-insert-here -->
 
+<a id='changelog-19.0.2'></a>
+## v19.0.2 (2025-03-12)
+
+- [Improvement] Add hatch_build.py in sdist target to fix the installation issues (by @dawoudsheraz)
+
+<a id='changelog-19.0.1'></a>
+## v19.0.1 (2025-03-11)
+
+- [Bugfix] Fix broken feature in `dev` mode, where the frontend is reporting a CORS error on loading the notes. (by @regisb)
+
+- [Improvement] Migrate from `setup.py` (setuptools) to `pyproject.toml` (hatch). (by @jfavellar90)
+
 <a id='changelog-19.0.0'></a>
 ## v19.0.0 (2024-10-24)
 
