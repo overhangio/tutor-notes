@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1.4
+# syntax=docker/dockerfile:1
 FROM docker.io/ubuntu:24.04
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -7,17 +7,17 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN userdel -r ubuntu
 
 RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
-  --mount=type=cache,target=/var/lib/apt,sharing=locked \
-  apt update && \
-  apt upgrade -y && \
-  apt install -y \
-    language-pack-en \
-    git \
-    python3 \
-    python3-pip \
-    python3-venv \
-    libmysqlclient-dev \
-    pkg-config
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    apt update && \
+    apt upgrade -y && \
+    apt install -y \
+        language-pack-en \
+        git \
+        python3 \
+        python3-pip \
+        python3-venv \
+        libmysqlclient-dev \
+        pkg-config
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
 ###### Git-clone Notes repo ######
@@ -34,8 +34,13 @@ ENV PATH=/app/venv/bin:${PATH}
 # https://pypi.org/project/setuptools/
 # https://pypi.org/project/pip/
 # https://pypi.org/project/wheel/
-RUN --mount=type=cache,target=/app/.cache/pip,sharing=shared pip install setuptools==75.2.0 pip==24.2 wheel==0.44.0
+RUN --mount=type=cache,target=/app/.cache/pip,sharing=shared pip install setuptools==78.1.0 pip==25.0.1 wheel==0.46.0
 RUN --mount=type=cache,target=/app/.cache/pip,sharing=shared pip install -r requirements/base.txt
 
 EXPOSE 8000
-CMD gunicorn --workers=2 --name notes --bind=0.0.0.0:8000 --max-requests=1000 notesserver.wsgi:application
+CMD ["gunicorn", \
+    "--workers=2", \
+    "--name", "notes", \
+    "--bind=0.0.0.0:8000", \
+    "--max-requests=1000", \
+    "notesserver.wsgi:application"]
