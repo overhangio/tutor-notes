@@ -1,22 +1,31 @@
 .DEFAULT_GOAL := help
 .PHONY: docs
 SRC_DIRS = ./tutornotes
-BLACK_OPTS = --exclude templates ${SRC_DIRS}
+RUFF_OPTS = --exclude templates ${SRC_DIRS}
 
 # Warning: These checks are run on every PR.
-test: test-lint test-types test-format  # Run some static checks.
+test: test-lint test-types test-format test-pythonpackage
 
 test-format: ## Run code formatting tests.
-	black --check --diff $(BLACK_OPTS)
+	ruff format --check --diff $(RUFF_OPTS)
 
-test-lint: ## Run code linting tests
-	pylint --errors-only --enable=unused-import,unused-argument --ignore=templates --ignore=docs/_ext ${SRC_DIRS}
+test-lint:
+	ruff check ${SRC_DIRS}
 
 test-types: ## Run type checks.
 	mypy --exclude=templates --ignore-missing-imports --implicit-reexport --strict ${SRC_DIRS}
 
+build-pythonpackage:
+	python -m build --sdist
+
+test-pythonpackage: build-pythonpackage
+	twine check dist/tutor_notes-$(shell make version).tar.gz
+
 format: ## Format code automatically.
-	black $(BLACK_OPTS)
+	ruff format $(RUFF_OPTS)
+
+fix-lint: ## Fix linting issues automatically.
+	ruff check --fix $(RUFF_OPTS)
 
 isort: ## Sort imports. This target is not mandatory because the output may be incompatible with black formatting. Provided for convenience purposes.
 	isort --skip=templates ${SRC_DIRS}
@@ -26,6 +35,9 @@ changelog-entry: ## Create a new changelog entry.
 
 changelog: ## Collect changelog entries in the CHANGELOG.md file.
 	scriv collect
+
+version: ## Print the current tutor-android version
+	@python -c 'import io, os; about = {}; exec(io.open(os.path.join("tutornotes", "__about__.py"), "rt", encoding="utf-8").read(), about); print(about["__version__"])'
 
 ESCAPE = 
 help: ## Print this help.

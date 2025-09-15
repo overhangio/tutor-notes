@@ -17,7 +17,7 @@ if __version_suffix__:
 config = {
     "defaults": {
         "VERSION": __version__,
-        "DOCKER_IMAGE": "{{ DOCKER_REGISTRY }}overhangio/openedx-notes:{{ NOTES_VERSION }}",
+        "DOCKER_IMAGE": "{{ DOCKER_REGISTRY }}overhangio/openedx-notes:{{ NOTES_VERSION }}",  # noqa: E501
         "HOST": "notes.{{ LMS_HOST }}",
         "MYSQL_DATABASE": "notes",
         "MYSQL_USERNAME": "notes",
