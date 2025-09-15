@@ -36,7 +36,7 @@ changelog-entry: ## Create a new changelog entry.
 changelog: ## Collect changelog entries in the CHANGELOG.md file.
 	scriv collect
 
-version: ## Print the current tutor-android version
+version: ## Print the current tutor-notes version
 	@python -c 'import io, os; about = {}; exec(io.open(os.path.join("tutornotes", "__about__.py"), "rt", encoding="utf-8").read(), about); print(about["__version__"])'
 
 ESCAPE = 
