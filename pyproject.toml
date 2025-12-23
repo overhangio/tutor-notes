@@ -30,7 +30,6 @@ dependencies = [
   "tutor>=20.0.0,<21.0.0",
 ]
 
-# These fields will be set by hatch_build.py
 dynamic = ["version"]
 
 [project.optional-dependencies]
@@ -53,9 +52,8 @@ Community = "https://discuss.openedx.org/tag/tutor"
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-# hatch-specific configuration
-[tool.hatch.metadata.hooks.custom]
-path = ".hatch_build.py"
+[tool.hatch.version]
+path = "tutornotes/__about__.py"
 
 [tool.hatch.build.targets.wheel]
 packages = ["tutornotes"]
@@ -63,7 +61,7 @@ packages = ["tutornotes"]
 [tool.hatch.build.targets.sdist]
 # Disable strict naming, otherwise twine is not able to detect name/version
 strict-naming = false
-include = [ "/tutornotes", ".hatch_build.py"]
+include = [ "/tutornotes",]
 exclude = ["tests*"]
 
 [project.entry-points."tutor.plugin.v1"]
