@@ -34,7 +34,7 @@ ENV PATH=/app/venv/bin:${PATH}
 # https://pypi.org/project/setuptools/
 # https://pypi.org/project/pip/
 # https://pypi.org/project/wheel/
-RUN --mount=type=cache,target=/app/.cache/pip,sharing=shared pip install setuptools==78.1.0 pip==25.0.1 wheel==0.46.0
+RUN --mount=type=cache,target=/app/.cache/pip,sharing=shared pip install setuptools==80.9.0 pip==25.3 wheel==0.46.1
 RUN --mount=type=cache,target=/app/.cache/pip,sharing=shared pip install -r requirements/base.txt
 
 EXPOSE 8000
