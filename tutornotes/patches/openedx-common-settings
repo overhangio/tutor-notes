@@ -1,2 +1,2 @@
 # Student notes
-FEATURES["ENABLE_EDXNOTES"] = True
+ENABLE_EDXNOTES = True
