@@ -11,6 +11,7 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     apt update && \
     apt upgrade -y && \
     apt install -y \
+        ca-certificates \
         language-pack-en \
         git \
         python3 \
@@ -34,8 +35,12 @@ ENV PATH=/app/venv/bin:${PATH}
 # https://pypi.org/project/setuptools/
 # https://pypi.org/project/pip/
 # https://pypi.org/project/wheel/
-RUN --mount=type=cache,target=/app/.cache/pip,sharing=shared pip install setuptools==80.9.0 pip==25.3 wheel==0.46.1
+RUN --mount=type=cache,target=/app/.cache/pip,sharing=shared pip install setuptools==80.9.0 pip==26.2.2 wheel==0.46.1
 RUN --mount=type=cache,target=/app/.cache/pip,sharing=shared pip install -r requirements/base.txt
+
+# Upgrade certifi until the upstream requirements pin a version without the compromised emSign roots
+# https://emudhra.we-have-a-problem.com/
+RUN --mount=type=cache,target=/app/.cache/pip,sharing=shared pip install "certifi>=2026.10.19"
 
 EXPOSE 8000
 CMD ["gunicorn", \
