@@ -34,7 +34,7 @@ config = {
 # For each service, we load the task template
 # and add it to the CLI_DO_INIT_TASKS filter, which tells Tutor to
 # run it as part of the `init` job.
-for service in ["mysql", "lms", "notes"]:
+for service in ["mysql", "notes"]:
     full_path: str = str(
         importlib_resources.files("tutornotes")
         / "templates"
@@ -46,6 +46,21 @@ for service in ["mysql", "lms", "notes"]:
     with open(full_path, encoding="utf-8") as init_task_file:
         init_task: str = init_task_file.read()
     tutor_hooks.Filters.CLI_DO_INIT_TASKS.add_item((service, init_task))
+
+# Create the notes user and OAuth2 application in the LMS
+tutor_hooks.Filters.OPENEDX_SERVICE_USERS.add_item(
+    {"username": "notes", "staff": True, "superuser": True}
+)
+tutor_hooks.Filters.OPENEDX_OAUTH2_APPLICATIONS.add_item(
+    {
+        "name": "notes",
+        "user": "notes",
+        "client_id": "notes",
+        "client_secret": "{{ NOTES_OAUTH2_SECRET }}",
+        "redirect_uris": "http://notes:8000",
+        "skip_authorization": True,
+    }
+)
 
 # Image management
 tutor_hooks.Filters.IMAGES_BUILD.add_item(
