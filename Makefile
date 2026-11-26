@@ -19,7 +19,7 @@ build-pythonpackage:
 	python -m build --sdist
 
 test-pythonpackage: build-pythonpackage
-	twine check dist/tutor_notes-$(shell make version).tar.gz
+	twine check dist/tutor_notes-$(shell $(MAKE) --no-print-directory version).tar.gz
 
 format: ## Format code automatically.
 	ruff format $(RUFF_OPTS)
